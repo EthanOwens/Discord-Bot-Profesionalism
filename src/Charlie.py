@@ -6,9 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-#Designate the intent to be able to apply to more than one user at a time
-intents = discord.Intents.all()
-client = discord.Client(intents = intents)
+client = discord.Client()
 
 #Basic python function
 def contains(arr, item):
@@ -29,6 +27,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.content.lower() == "How are you Charlie?".lower():
+        #sending messages require you to include "await" to wait for the bot to be done with any existing processes before running your code
         await message.channel.send("I'm a happy dino!")
 
 #running the bot using our unique bot Token
