@@ -28,6 +28,11 @@ async def manualInsert(ctx, user: discord.User, arg1):
     print(f'Tuple inserted into player_data: ({user.id}, {user.name}, {ctx.guild}, {arg1}, {0})')
     cur.close()
 
+@bot.command
+async def bal(ctx, user: discord.User):
+    cur.execute(f'SELECT balance FROM player_data WHERE id = "{user.id}"')
+    await ctx.channel.send(f'{user.name}, your balance is {cur.fetchone()[0]}')
+
 @bot.command(help = "Returns balance of user")
 async def bal(ctx):
     cur.execute(f'SELECT balance FROM player_data WHERE id = "{ctx.author.id}"')

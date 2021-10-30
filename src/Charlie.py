@@ -33,6 +33,8 @@ def contains(arr, item):
 async def on_ready():
     for guild in client.guilds:
         print(f'Charlie is connected to {guild.name}')
+        for member in guild.members:
+            if(not )
 
 @client.event
 async def on_guild_join(guild):
