@@ -2,6 +2,7 @@ import discord
 import os
 from dotenv import load_dotenv
 import sqlite3
+import re
 
 con = sqlite3.connect('charlie.db')
 cur = con.cursor()
@@ -34,7 +35,15 @@ async def on_ready():
     for guild in client.guilds:
         print(f'Charlie is connected to {guild.name}')
         for member in guild.members:
-            if(not )
+            cur.execute(f'SELECT id FROM player_data WHERE id = "{member.id}" AND guild = "{guild}"')
+            data = cur.fetchall()
+            if(len(data) == 0):
+                #add new member to the database with starting balance of 50
+                print(f'Adding {member.name} to player_data')
+                cur.execute(f'INSERT INTO player_data VALUES ("{member.id}", "{member.name}", "{guild}", {50}, {0})')
+            else:
+                print("user already in database")
+    con.commit()
 
 @client.event
 async def on_guild_join(guild):
@@ -48,6 +57,6 @@ async def on_message(message):
         #sending messages require you to include "await" to wait for the bot to be done with any existing processes before running your code
         await message.channel.send("I'm a happy dino!")
 
-cur.close()
+    msg_length = re.sub(":.:")
 #running the bot using our unique bot Token
 client.run(TOKEN)
