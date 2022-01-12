@@ -1,5 +1,7 @@
-Make sure you have a python ide installed (I use pycharm) with the folllowing commands ran in the terminal to support your importss:
-pip install -U python-dotenv
-pip install discord.py
+Developed in Python 3.9.6
+
+This project was made for my Professionalism in Computer Science Course
+
+This project creates a simple Discord bot to award and track experience points to users when they send chat messages. All data for this project is stored in an SQLite3 database.
 
 NOTE: The discord token in .env is not up to date for security's sake.
